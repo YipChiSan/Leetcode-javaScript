@@ -21,3 +21,19 @@ var reverseList = function(head) {
     
     return prev;
 };
+
+var reverseListRecursive = function(head) {
+    let prev = null;
+    
+    return recur(head,prev);
+};
+
+var recur = function(head, prev) {
+    if (head === null) {
+        return prev;
+    } else {
+        let temp = head.next;
+        head.next = prev;
+        return recur(temp, head);
+    }
+}
