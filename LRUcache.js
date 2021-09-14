@@ -56,7 +56,7 @@ LRUCache.prototype.put = function(key, value) {
                 this.head = null;
             }
             this.tail = this.tail.prev;
-            this.dict.set(tailedKey, undefined);
+            this.dict.delete(tailedKey);
             this.length--;
         }
     
