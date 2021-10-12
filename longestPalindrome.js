@@ -2,7 +2,7 @@
  * @param {string} s
  * @return {string}
  */
-var longestPalindrome = function(s) {
+var longestPalindromeDP = function(s) {
     let comparedTable = [];
     for (let i = 0; i < s.length; i++) {
         comparedTable.push([]);
@@ -48,4 +48,32 @@ var longestPalindrome = function(s) {
     }
     
     return s.substr(maxStart, maxLength);
+};
+
+var longestPalindrome = function(s) {
+    
+    if (s === s.split('').reverse().join('')) return s;
+    let subString = s[0];
+    
+    for (let i = 1; i < s.length; i++) {
+        
+        let left = i - 1;
+        let right = i + 1;
+        let curr = s[i];
+        
+        while (s[i] === s[left]) {
+            curr += s[left];
+            left--;
+        }
+        while (s[left] === s[right]) {
+            curr = s[left] + curr + s[right];
+            left--;
+            right++;
+        }
+        if (curr.length > subString.length) {
+            subString = curr;
+        }  
+    }
+    
+    return subString;
 };
